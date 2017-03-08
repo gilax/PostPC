@@ -35,15 +35,42 @@
         android:layout_below="@+id/message_edit_text"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:textSize="@dimen/textSize"
         android:textColor="@color/textColor1"
-        android:visibility="invisible"/>
+        android:visibility="visible"/>
 
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/colorText"
+        android:id="@+id/options"
         android:layout_toLeftOf="@+id/button"
         android:layout_alignParentBottom="true" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chooser"
+        android:layout_above="@id/button"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bigFont"
+            android:textSize="@dimen/BigTextSize"
+            android:text="@string/big_font_size"
+            android:checked="true"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mediumFont"
+            android:textSize="@dimen/MediumTextSize"
+            android:text="@string/medium_font_size"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/smallFont"
+            android:textSize="@dimen/SmallTextSize"
+            android:text="@string/small_font_size"/>
+    </RadioGroup>
 
 </RelativeLayout>
