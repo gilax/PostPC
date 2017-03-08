@@ -23,8 +23,6 @@ public class MainActivity extends AppCompatActivity {
         final Switch options = (Switch) findViewById(R.id.options);
         final RadioGroup fonts = (RadioGroup) findViewById(R.id.chooser);
 
-        textView.append("Your last messages are:\n");
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,8 +40,10 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 if (isChecked) {
                     textView.setVisibility(View.INVISIBLE);
+                    fonts.setVisibility(View.VISIBLE);
                 } else {
                     textView.setVisibility(View.VISIBLE);
+                    fonts.setVisibility(View.INVISIBLE);
                 }
             }
         });

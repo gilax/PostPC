@@ -5,4 +5,5 @@
     <string name="big_font_size">Big font size</string>
     <string name="medium_font_size">Medium font size</string>
     <string name="small_font_size">Small font size</string>
+    <string name="first_message">Your last messages are:\n</string>
 </resources>
