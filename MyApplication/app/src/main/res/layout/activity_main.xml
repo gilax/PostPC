@@ -28,16 +28,15 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:id="@+id/textView"
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/message_edit_text"
         android:layout_centerInParent="true"
         android:gravity="center"
         android:textColor="@color/textColor"
-        android:text="@string/first_message"
-        android:textSize="@dimen/BigTextSize"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:visibility="visible"/>
 
     <Switch
