@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,10 +18,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final int TOP = 1;
+    final ArrayList<String> ListItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
         final Switch options = (Switch) findViewById(R.id.options);
         final RadioGroup fonts = (RadioGroup) findViewById(R.id.chooser);
 
-        final ArrayList<String> ListItems = new ArrayList<>();
         final TextAdapter<String> adapter = new TextAdapter<>(this,
                 android.R.layout.simple_list_item_1, ListItems);
+        final SimpleDateFormat time = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
         adapter.add(getString(R.string.first_message));
         adapter.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.MediumTextSize));
@@ -47,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String message = String.valueOf(editText.getText());
                 editText.setText("");
-                adapter.add(message);
+                ListItems.add(TOP, time.format(new Date()) + "\t" + message);
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -87,6 +95,12 @@ public class MainActivity extends AppCompatActivity {
         });
      }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+    }
+
     class TextAdapter<T> extends ArrayAdapter<T> {
 
         float textSize = 0;
@@ -101,6 +115,12 @@ public class MainActivity extends AppCompatActivity {
         public View getView(int position, View convertView, @NonNull ViewGroup parent) {
             View view = super.getView(position, convertView, parent);
             TextView text = (TextView) view.findViewById(android.R.id.text1);
+
+            if (position == 0) {
+                text.setTextColor(getColor(R.color.textColor));
+            } else {
+                text.setTextColor(getColor(R.color.black));
+            }
 
             if (text != null && textSize > 0) {
                 text.setTextSize(unit, textSize);
